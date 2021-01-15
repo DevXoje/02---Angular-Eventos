@@ -1,0 +1,24 @@
+<form class="mt-4 mb-5 ml-auto mr-auto card p-3" style="width: 18rem;" (ngSubmit)="addEvento()">
+    <div class="form-group ">
+        <label for="titulo">Titulo</label>
+        <input id="titulo" type="text" class="form-control" name="title" placeholder="Enter name" [(ngModel)]="nuevoEvento.title">
+    </div>
+    <div class="form-group">
+        <label for="imagen">Imagen</label>
+        <input id="imagen" type="file" class="form-control" name="imagen" (change)="changeImage($event)">
+    </div>
+    <div class="form-group">
+        <label for="fechaCreacion">Fecha</label>
+        <input type="date" name="fechaCreacion" id="fechaCreacion" class="form-control" placeholder="yyyy-MM-dd" [(ngModel)]="nuevoEvento.date">
+    </div>
+    <div class="form-group">
+        <label for="descripcion">Descripcion</label>
+        <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Este articulo mola ..." [(ngModel)]="nuevoEvento.description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="precio">Precio</label>
+        <input type="number" name="precio" id="precio" class="form-control" placeholder="10.0" [(ngModel)]="nuevoEvento.price">
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

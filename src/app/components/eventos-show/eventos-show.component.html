@@ -1,0 +1,36 @@
+<!--Form-->
+<app-eventos-form [eventos]="eventos"></app-eventos-form>
+
+<!--Galery-->
+<div class="card-columns mt-4">
+    <!-- Aquí listaremos los eventos -->
+    <h3 *ngIf="eventos.length==0">No hay eventos disponibles</h3>
+    <div *ngFor="let evento of eventos| eventfilter:textoBusqueda : sortMode" class="card">
+        <img class="card-img-top" src={{evento.image}} alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">{{evento.title |titlecase}}</h4>
+            <p class="card-text">{{evento.description}}</p>
+        </div>
+        <div class="card-footer text-muted">
+            {{evento.date |date:'d/MM/yy'}}
+            <span class="float-right">{{evento.price |currency:'EUR' }}</span>
+        </div>
+    </div>
+</div>
+<!--Searcher--
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#" (click)=(ordenarFecha($event))>Orden por fecha</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#" (click)=(ordenarPrecio($event))>Orden por precio</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="search-text" class="form-control mr-sm-2" type="search" placeholder="Search" (keyup)="searchEventos()" [(ngModel)]="textoBusqueda">
+        </form>
+    </div>
+</nav>-->
+<app-eventos-searcher></app-eventos-searcher>

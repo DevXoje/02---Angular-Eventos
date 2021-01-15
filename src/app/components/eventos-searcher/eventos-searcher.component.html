@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#" (click)=(ordenarFecha($event))>Orden por fecha</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-info" href="#" (click)=(ordenarPrecio($event))>Orden por precio</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="search-text" class="form-control mr-sm-2" type="search" placeholder="Search" (keyup)="searchEventos()" [(ngModel)]="textoBusqueda">
+        </form>
+    </div>
+</nav>
