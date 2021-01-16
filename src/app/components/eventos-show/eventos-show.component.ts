@@ -39,7 +39,16 @@ export class EventosShowComponent implements OnInit {
   searchEventos() {
     console.log(this.eventos);
   }
-
+  ordenarFecha(e: Event) {
+    this.textoBusqueda = "";
+    this.sortMode = "date";
+    e.preventDefault();
+  }
+  ordenarPrecio(e: Event) {
+    this.textoBusqueda = "";
+    this.sortMode = "price";
+    e.preventDefault();
+  }
 
   ngOnInit(): void {
   }
