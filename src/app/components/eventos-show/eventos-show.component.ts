@@ -53,12 +53,20 @@ export class EventosShowComponent implements OnInit {
   }
   ordenarFecha(e: Event) {
     this.textoBusqueda = "";
-    this.sortMode = "date";
+
+    console.log(this.eventos);
+    this.eventos.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    console.log(this.eventos);
+
     e.preventDefault();
   }
   ordenarPrecio(e: Event) {
     this.textoBusqueda = "";
-    this.sortMode = "price";
+
+    console.log(this.eventos);
+    this.eventos.sort((a, b) => a.price - b.price);
+    console.log(this.eventos);
+
     e.preventDefault();
   }
   /*Form */
