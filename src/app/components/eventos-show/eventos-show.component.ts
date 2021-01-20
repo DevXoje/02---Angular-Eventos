@@ -47,10 +47,6 @@ export class EventosShowComponent implements OnInit {
   }
 
 
-  searchEventos() {
-    //const filtro = new EventFilterPipe();
-    console.log(this.textoBusqueda);//Fallo principal
-  }
   ordenarFecha(e: Event) {
     this.textoBusqueda = "";
 
