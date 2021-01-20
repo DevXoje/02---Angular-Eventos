@@ -15,8 +15,7 @@ export class EventosShowComponent implements OnInit {
 
   nuevoEvento: IEvento;
 
-  sortMode = "";
-  textoBusqueda = "";
+  textoBusqueda: string;
   constructor() {
     this.eventos = [
       {
@@ -49,7 +48,8 @@ export class EventosShowComponent implements OnInit {
 
 
   searchEventos() {
-    console.log(this.eventos);
+    //const filtro = new EventFilterPipe();
+    console.log(this.textoBusqueda);//Fallo principal
   }
   ordenarFecha(e: Event) {
     this.textoBusqueda = "";
@@ -72,7 +72,6 @@ export class EventosShowComponent implements OnInit {
   /*Form */
   addEvento() {
     this.eventos.push(this.nuevoEvento);
-    console.log(this.nuevoEvento);
 
     this.nuevoEvento = {
       title: "",

@@ -7,13 +7,17 @@ import { IEvento } from 'src/app/Models/IEvento';
 })
 export class EventFilterPipe implements PipeTransform {
 
-  transform(eventos: IEvento[], keyword: string, sort: string): Array<IEvento> {
+  transform(eventos: IEvento[], keyword: string): Array<IEvento> {
     let output: Array<IEvento> = new Array<IEvento>();
-    for (let i = 0; i < eventos.length; i++) {
-      const evento = eventos[i];
-      if (evento.title.includes(keyword)) {
-        output.push(evento);
+    if (keyword != undefined) {
+      for (let i = 0; i < eventos.length; i++) {
+        const evento = eventos[i];
+        if (evento.title.includes(keyword)) {
+          output.push(evento);
+        }
       }
+    } else {
+      output = eventos;
     }
 
 

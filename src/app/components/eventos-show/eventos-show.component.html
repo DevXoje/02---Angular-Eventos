@@ -29,7 +29,7 @@
 <div class="card-columns mt-4">
     <!-- Aquí listaremos los eventos -->
     <h3 *ngIf="eventos.length==0">No hay eventos disponibles</h3>
-    <div *ngFor="let evento of eventos| eventfilter:textoBusqueda : sortMode" class="card">
+    <div *ngFor="let evento of eventos| eventfilter:textoBusqueda" class="card">
         <img class="card-img-top" src={{evento.image}} alt="Card image cap">
         <div class="card-body">
             <h4 class="card-title">{{evento.title |titlecase}}</h4>
