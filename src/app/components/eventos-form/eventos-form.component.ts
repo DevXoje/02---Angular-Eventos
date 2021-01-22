@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { IEvento } from 'src/app/Models/IEvento';
 
 @Component({
@@ -7,8 +7,8 @@ import { IEvento } from 'src/app/Models/IEvento';
   styleUrls: ['./eventos-form.component.sass']
 })
 export class EventosFormComponent implements OnInit {
+  @Output() notify: EventEmitter<IEvento> = new EventEmitter();
   nuevoEvento: IEvento;
-  @Input() eventos: IEvento[];
 
   constructor() {
     this.nuevoEvento = {
@@ -20,8 +20,7 @@ export class EventosFormComponent implements OnInit {
     };
   }
   addEvento() {
-    this.eventos.push(this.nuevoEvento);
-    console.log(this.nuevoEvento);
+    this.notify.emit(this.nuevoEvento);
 
     this.nuevoEvento = {
       title: "",

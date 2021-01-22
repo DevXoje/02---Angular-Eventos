@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { EventosServiceService } from '../../services/eventos-service.service';
 
 import { IEvento } from 'src/app/Models/IEvento';
 //import { EventosSearcherComponent } from '../eventos-searcher/eventos-searcher.component';
@@ -13,39 +14,18 @@ export class EventosShowComponent implements OnInit {
   eventos: IEvento[];
   //@ViewChild("app-eventos-searcher") searcher: EventosSearcherComponent;
 
-  nuevoEvento: IEvento;
-
   textoBusqueda: string;
-  constructor() {
-    this.eventos = [
-      {
-        title: "Evento de prueba",
-        image: "assets/photography-equipment.jpg",
-        date: "2019-03-15",
-        description: "Nos lo pasaremos genial",
-        price: 23.95
-      },
-      {
-        title: "Evento de prueba 2",
-        image: "assets/photography-kitchen-tools.jpg",
-        date: "2019-03-21",
-        description: "Este es peor",
-        price: 15.5
-      }
-    ];
-    //this.sortMode = this.searcher.sortMode;
-    //this.textoBusqueda = this.searcher.textoBusqueda;
+  constructor(private _servicio: EventosServiceService) {
+    this.eventos = _servicio.obtenerEventos();
 
-    /*Form */
-    this.nuevoEvento = {
-      title: "",
-      image: "",
-      date: "",
-      description: "",
-      price: 0
-    };
   }
 
+  addEvento(newEvento: IEvento) {
+    this.eventos.push(newEvento);
+  }
+  removeEvento(oldEvento: IEvento) {
+    this.eventos = this.eventos.filter(evento => evento != oldEvento);
+  }
 
   ordenarFecha(e: Event) {
     this.textoBusqueda = "";
@@ -64,28 +44,6 @@ export class EventosShowComponent implements OnInit {
     console.log(this.eventos);
 
     e.preventDefault();
-  }
-  /*Form */
-  addEvento() {
-    this.eventos.push(this.nuevoEvento);
-
-    this.nuevoEvento = {
-      title: "",
-      image: "",
-      date: "",
-      description: "",
-      price: 0
-    };
-  }
-  changeImage(e: Event) {
-    const fileInput: HTMLInputElement = e.target as HTMLInputElement;
-    if (!fileInput.files || fileInput.files.length === 0) { return; }
-    const reader: FileReader = new FileReader();
-    reader.readAsDataURL(fileInput.files[0]);
-    reader.addEventListener('loadend', e => {
-      this.nuevoEvento.image = reader.result as string;
-    });
-
   }
 
   ngOnInit(): void {

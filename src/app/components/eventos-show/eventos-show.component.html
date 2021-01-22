@@ -1,44 +1,13 @@
-<!--Form--
-<app-eventos-form [eventos]="eventos"></app-eventos-form>-->
-<form class="mt-4 mb-5 ml-auto mr-auto card p-3" style="width: 18rem;" (ngSubmit)="addEvento()">
-    <div class="form-group ">
-        <label for="titulo">Titulo</label>
-        <input id="titulo" type="text" class="form-control" name="title" placeholder="Enter name" [(ngModel)]="nuevoEvento.title">
-    </div>
-    <div class="form-group">
-        <label for="imagen">Imagen</label>
-        <input id="imagen" type="file" class="form-control" name="imagen" (change)="changeImage($event)">
-    </div>
-    <div class="form-group">
-        <label for="fechaCreacion">Fecha</label>
-        <input type="date" name="fechaCreacion" id="fechaCreacion" class="form-control" placeholder="yyyy-MM-dd" [(ngModel)]="nuevoEvento.date">
-    </div>
-    <div class="form-group">
-        <label for="descripcion">Descripcion</label>
-        <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Este articulo mola ..." [(ngModel)]="nuevoEvento.description"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="precio">Precio</label>
-        <input type="number" name="precio" id="precio" class="form-control" placeholder="10.0" [(ngModel)]="nuevoEvento.price">
+<!--Form---->
+<app-eventos-form (notify)="addEvento($event)"></app-eventos-form>
 
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 
 <!--Galery-->
 <div class="card-columns mt-4">
     <!-- Aquí listaremos los eventos -->
     <h3 *ngIf="eventos.length==0">No hay eventos disponibles</h3>
     <div *ngFor="let evento of eventos| eventfilter:textoBusqueda" class="card">
-        <img class="card-img-top" src={{evento.image}} alt="Card image cap">
-        <div class="card-body">
-            <h4 class="card-title">{{evento.title |titlecase}}</h4>
-            <p class="card-text" [innerText]="evento.description"></p>
-        </div>
-        <div class="card-footer text-muted">
-            {{evento.date |date:'d/MM/yy'}}
-            <span class="float-right">{{evento.price |currency:'EUR' }}</span>
-        </div>
+        <app-evento-item [evento]="evento" (notify)="removeEvento($event)"></app-evento-item>
     </div>
 </div>
 <!--Searcher-->

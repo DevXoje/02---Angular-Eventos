@@ -8,6 +8,9 @@ import { EventosShowComponent } from './components/eventos-show/eventos-show.com
 import { EventFilterPipe } from './Pipes/event-filter.pipe';
 import { EventosFormComponent } from './components/eventos-form/eventos-form.component';
 import { EventosSearcherComponent } from './components/eventos-searcher/eventos-searcher.component';
+import { EventoItemComponent } from './components/evento-item/evento-item.component';
+
+import { EventosServiceService } from "./services/eventos-service.service";
 
 @NgModule({
   declarations: [
@@ -15,14 +18,15 @@ import { EventosSearcherComponent } from './components/eventos-searcher/eventos-
     EventosShowComponent,
     EventFilterPipe,
     EventosFormComponent,
-    EventosSearcherComponent
+    EventosSearcherComponent,
+    EventoItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [EventosServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
