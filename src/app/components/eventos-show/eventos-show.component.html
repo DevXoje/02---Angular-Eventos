@@ -4,27 +4,29 @@
 
 <!--Galery-->
 <div class="card-columns mt-4">
-    <!-- Aquí listaremos los eventos -->
-    <h3 *ngIf="eventos.length==0">No hay eventos disponibles</h3>
-    <div *ngFor="let evento of eventos| eventfilter:textoBusqueda" class="card">
-        <app-evento-item [evento]="evento" (notify)="removeEvento($event)"></app-evento-item>
-    </div>
+  <!-- Aquí listaremos los eventos -->
+  <h3 *ngIf="eventos.length==0">No hay eventos disponibles</h3>
+  <div *ngFor="let evento of eventos| eventfilter:textoBusqueda" class="card">
+    <app-evento-item [evento]="evento" (notify)="removeEvento($event)"></app-evento-item>
+  </div>
 </div>
 <!--Searcher-->
 <nav class="navbar navbar-expand navbar-light bg-light">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link text-info" href="#" (click)=(ordenarFecha($event))>Orden por fecha</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-info" href="#" (click)=(ordenarPrecio($event))>Orden por precio</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input id="search-text" name="textoBusqueda" class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="textoBusqueda">
-        </form>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link text-info" href="#" (click)="ordenarFecha(); $event.preventDefault();">Orden por fecha</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-info" href="#" (click)="ordenarPrecio(); $event.preventDefault();">Orden por
+          precio</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input id="search-text" name="textoBusqueda" class="form-control mr-sm-2" type="search" placeholder="Search"
+        [(ngModel)]="textoBusqueda">
+    </form>
+  </div>
 </nav>
 <!--
 <app-eventos-searcher></app-eventos-searcher>

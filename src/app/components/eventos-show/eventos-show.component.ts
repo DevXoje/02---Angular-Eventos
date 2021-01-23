@@ -27,23 +27,18 @@ export class EventosShowComponent implements OnInit {
     this.eventos = this.eventos.filter(evento => evento != oldEvento);
   }
 
-  ordenarFecha(e: Event) {
-    this.textoBusqueda = "";
-
+  ordenarFecha() {
     console.log(this.eventos);
     this.eventos.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
     console.log(this.eventos);
-
-    e.preventDefault();
+    this.textoBusqueda = undefined;
   }
-  ordenarPrecio(e: Event) {
-    this.textoBusqueda = "";
 
+  ordenarPrecio() {
     console.log(this.eventos);
     this.eventos.sort((a, b) => a.price - b.price);
     console.log(this.eventos);
-
-    e.preventDefault();
+    this.textoBusqueda = undefined;
   }
 
   ngOnInit(): void {
