@@ -16,7 +16,9 @@ export class EventosShowComponent implements OnInit {
 
   textoBusqueda: string;
   constructor(private _servicio: EventosServiceService) {
-    this.eventos = _servicio.obtenerEventos();
+    this.eventos = Array<IEvento>();
+    //this.eventos = _servicio.obtenerEventos();
+
 
   }
 
@@ -28,20 +30,17 @@ export class EventosShowComponent implements OnInit {
   }
 
   ordenarFecha() {
-    console.log(this.eventos);
     this.eventos.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    console.log(this.eventos);
     this.textoBusqueda = undefined;
   }
 
   ordenarPrecio() {
-    console.log(this.eventos);
     this.eventos.sort((a, b) => a.price - b.price);
-    console.log(this.eventos);
     this.textoBusqueda = undefined;
   }
 
   ngOnInit(): void {
+    this._servicio.obtenerEventos().subscribe(eventos => this.eventos = eventos);
   }
 
 }

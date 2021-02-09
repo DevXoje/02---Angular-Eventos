@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { EventoResponse, EventosResponse } from '../Models/responses';
 import { IEvento } from '../Models/IEvento';
 
 @Injectable({
@@ -7,7 +11,7 @@ import { IEvento } from '../Models/IEvento';
 export class EventosServiceService {
   eventos: IEvento[];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.eventos = [
       {
         title: "Evento de prueba",
@@ -25,7 +29,16 @@ export class EventosServiceService {
       }
     ];
   }
-  obtenerEventos() {
-    return this.eventos;
+  obtenerEventos(): Observable<IEvento[]> {
+    return this.http.get<EventosResponse>('/eventos').pipe(map(resp => resp.eventos));
   }
+
+  addEvent(evento: IEvento): Observable<IEvento> {
+    return this.http.post<EventoResponse>(`/eventos`, evento).pipe(map(resp => resp.evento));
+  }
+  /*
+  deleteEvento(idEvent: number): Observable<EventoDeleteResponse> {
+    return
+  }
+  */
 }

@@ -12,6 +12,10 @@ import { EventoItemComponent } from './components/evento-item/evento-item.compon
 
 import { EventosServiceService } from "./services/eventos-service.service";
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { BaseUrlInterceptor } from "./interceptors/base-url.interceptor";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +28,10 @@ import { EventosServiceService } from "./services/eventos-service.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [EventosServiceService],
+  providers: [EventosServiceService, { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
